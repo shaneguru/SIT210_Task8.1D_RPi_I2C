@@ -1,0 +1,26 @@
+from smbus import SMBus
+ 
+addr = 0x8 # bus address
+bus = SMBus(1) # indicates /dev/ic2-1
+ 
+numb = 1
+
+print("Enter 'on' for switch light on, 'off' for switch it off:") 
+
+while numb == 1:
+	user_input = input(">>>>   ")
+	if (user_input=='on'):
+		ledstate = 1
+		bus.write_byte(addr, 0x1)
+	elif (user_input=='off'):
+		ledstate = 0
+		bus.write_byte(addr, 0x0) # switch it on
+	else:
+		print('Enter correct input')
+		numb = 0
+
+
+
+#  Got help from DroneBot Workshop 2019 and changed the code to match requirements
+#  https://dronebotworkshop.com
+ 
